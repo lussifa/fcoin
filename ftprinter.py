@@ -159,7 +159,8 @@ def trader():
         seller()
         
 cancel_all()
-scalping()
+get_fc_balance()
+init_amount=int(allcoin*fc_bid+allusdt)
 a=0
 while 1:
     a=a+1
@@ -194,6 +195,6 @@ while 1:
             t4.join()
         except:
             pass
-    profit=int(allcoin*fc_bid+allusdt-1400-1040-1065)
-    print (round((fc_bid+fc_ask)/2,1),' fast:',round(fast,1),' slow:',round(slow,1),' profit:',round(profit,2),' coin:',round(allcoin,4),' usdt:',round(allusdt,2))
+    profit=int(allcoin*fc_bid+allusdt)-init_amount
+    print (round((fc_bid+fc_ask)/2,1),' profit:',round(profit,2),' coin:',round(allcoin,4),' usdt:',round(allusdt,2))
     time.sleep(0.1)
