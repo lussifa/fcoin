@@ -196,5 +196,5 @@ while 1:
         except:
             pass
     profit=int(allcoin*fc_bid+allusdt)-init_amount
-    print (round((fc_bid+fc_ask)/2,1),' profit:',round(profit,2),' coin:',round(allcoin,4),' usdt:',round(allusdt,2))
-    time.sleep(0.1)
+    print ('price:',round((fc_bid+fc_ask)/2,1),' profit:',round(profit,2),' coin:',round(allcoin,4),' usdt:',round(allusdt,2))
+    time.sleep(0.5)
