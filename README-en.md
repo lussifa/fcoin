@@ -1,5 +1,5 @@
 # fcoin
-fcoin FT miner trade in Fcoin: btc/usdt. based on your balance safe make more FT incoming
+fcoin FT miner, trade in Fcoin: btc/usdt. based on your balance safe make more FT incoming
 
 - [detail](https://www.fcoin.pro/mining)
 ## declare:
