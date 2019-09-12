@@ -6,6 +6,6 @@ fcoin的ft挖矿交易程序,fcoin平台推出了交易挖矿,挂单挖矿和排
 1. linux:  
 - pip3 install multiprocess
 - python3 ftprinter.py
-2. windows:  python ftprinter.py
+2. windows: 
 - pip install multiprocess
 - python ftprinter.py
