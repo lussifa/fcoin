@@ -11,7 +11,7 @@ retryt = 5
 gate_symbol = 'BTC_USD'
 fc_symbol = 'btcusdt'
 sym = fc_symbol[0:-4]
-fc_ordersize = 0.0222
+fc_ordersize = 0.005
 
 # fcoin
 fcoin = Fcoin()
