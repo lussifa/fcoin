@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 # encoding: utf-8
 from fcoin3 import Fcoin
-import gate_api
 import threading
 import time
 from multiprocessing.dummy import Pool as ThreadPool
