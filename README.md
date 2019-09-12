@@ -1,7 +1,7 @@
 # fcoin
 fcoin的ft挖矿交易程序
-# 使用
-linux:
+## 使用
+### linux:
 python3 ftprinter.py
-windows:
+### windows:
 python ftprinter.py
