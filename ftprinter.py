@@ -74,10 +74,12 @@ def ft_buy(price):
     fcoin.buy(fc_symbol, price, fc_ordersize)
 
 def scalping():
+    print ('let me check ')
     get_chart()
     global slow
     global timestamp
     global fast
+    global res
     a=0
     fast=0
     slow=0
@@ -95,11 +97,17 @@ def scalping():
         if a>=15:
             break
     slow=slow/15
+    if fast>slow:
+        res='long'
+    if fast<slow:
+        res='short'
+    
     
 
 def sell_manager(direction):
     order_list = fcoin.list_orders(symbol=fc_symbol, states='filled')
     order_list=order_list['data']
+    
     if direction=='short':
         fill_price=order_list[0]['price']
         fcoin.buy(fc_symbol, round(fill_price-1,1), fc_ordersize)
@@ -111,8 +119,12 @@ def sell_manager(direction):
     
 def seller():
     retryt=0
+    if res=='long':
+        dot=1
+    if res=='short':
+        dot=-0.1
     if freecoin>fc_ordersize:
-        order_id=fcoin.sell(fc_symbol, round(fc_ask+1.1,1), fc_ordersize)['data']
+        order_id=fcoin.sell(fc_symbol, round(fc_ask+1.2+dot,1), fc_ordersize)['data']
         order_state=fcoin.order_result(order_id)['data']
         while order_state==[]:
             order_state=fcoin.order_result(order_id)['data']
@@ -132,8 +144,12 @@ def seller():
 
 def buyer():
     retryt=0
+    if res=='long':
+        dot=0.1
+    if res=='short':
+        dot=-1
     if freeusdt>fc_ordersize*fc_ask:
-        order_id=fcoin.buy(fc_symbol, round(fc_bid-1.1,1), fc_ordersize)['data']
+        order_id=fcoin.buy(fc_symbol, round(fc_bid-1.2+dot,1), fc_ordersize)['data']
         order_state=fcoin.order_result(order_id)['data']
         while order_state==[]:
             order_state=fcoin.order_result(order_id)['data']
@@ -158,14 +174,12 @@ def trader():
         seller()
         
 cancel_all()
-get_fc_balance()
-init_amount=int(allcoin*fc_bid+allusdt)
-a=0
+scalping()
+a=31
 while 1:
     a=a+1
-    '''if a%31==0:
+    if a%31==0:
         scalping()
-        cancel_all()'''
     t1 = threading.Thread(target=get_fc_price)
     if not t1.is_alive():
         try:
@@ -194,6 +208,7 @@ while 1:
             t4.join()
         except:
             pass
-    profit=int(allcoin*fc_bid+allusdt)-init_amount
-    print ('price:',round((fc_bid+fc_ask)/2,1),' profit:',round(profit,2),' coin:',round(allcoin,4),' usdt:',round(allusdt,2))
+    profit=allcoin*fc_bid+allusdt-1054
+    print (round((fc_bid+fc_ask)/2,1),' profit:',round(profit,2),' coin:',round(allcoin,4),' usdt:',round(allusdt,2),res)
     time.sleep(0.5)
+
